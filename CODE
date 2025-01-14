@@ -1,0 +1,13 @@
+with price as (
+select*from bike1 
+union all
+select*from bike2)   -- kết nối hai bảng trong hai năm lại với nhau. 
+select*,
+ round(riders*price,2) as revenue, -- hàm round dùng để làm tròn. 
+round(riders*price-COGS) as profit,
+DATE_FORMAT(dteday, '%b %Y') AS Months,
+DATE_FORMAT(dteday, '%Y') AS Years
+
+  from price a -- a là alias của bảng price.
+left join cost b -- b là alias của bảng cost 
+on a.yr= b.yr -- join bảng cost với bảng price vừa tạo  
